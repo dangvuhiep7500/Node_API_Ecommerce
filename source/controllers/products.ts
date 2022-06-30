@@ -23,7 +23,7 @@ const listProduct = async (req: Request, res: Response, next: NextFunction) => {
     const productId = req.params.productId;
 
     return await Product.findById(productId)
-        .populate('Product')
+        .exec()
         .then((product) => (product ? res.status(200).json(product) : res.status(404).json({ message: 'not found' })))
         .catch((error) => res.status(500).json({ error }));
 };

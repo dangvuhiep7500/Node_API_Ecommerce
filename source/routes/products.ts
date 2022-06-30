@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.post('/create', extractJWT.requireSignin, extractJWT.adminMiddleware, controller.NewProduct);
 
-router.get('/get/:productId', controller.listProduct);
+router.get('/:productId', controller.listProduct);
 
-router.get('/get', controller.listAllProduct);
+router.get('/', controller.listAllProduct);
 
 router.patch('/update/:productId', extractJWT.requireSignin, extractJWT.adminMiddleware, controller.updateProduct);
 
