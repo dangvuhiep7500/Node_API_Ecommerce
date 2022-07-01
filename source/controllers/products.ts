@@ -4,13 +4,14 @@ import mongoose from 'mongoose';
 const NAMESPACE = 'Product Controller';
 
 const NewProduct = async (req: Request, res: Response, next: NextFunction) => {
-    const { title, description, image, categoryId, price } = req.body;
+    const { title, description, image, categoryId, price, imageDetail } = req.body;
     const product = await new Product({
         _id: new mongoose.Types.ObjectId(),
         title,
         description,
         image,
         categoryId,
+        imageDetail,
         price
     });
     return product
