@@ -6,7 +6,10 @@ const router = express.Router();
 
 router.post('/create', extractJWT.requireSignin, extractJWT.adminMiddleware, controller.NewCategory);
 
+router.post('/create-subCategory', extractJWT.requireSignin, extractJWT.adminMiddleware, controller.addSubCategory);
+
 router.get('/category', controller.listAllCategory);
+router.get('/subcategory', controller.listAllSubCategory);
 
 router.patch('/update/:categoryId', extractJWT.requireSignin, extractJWT.adminMiddleware, controller.updateCategory);
 
