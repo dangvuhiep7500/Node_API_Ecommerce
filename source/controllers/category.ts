@@ -1,53 +1,55 @@
 import Category from '../models/category';
 import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
-import sub_category from '../models/sub_category';
 const NAMESPACE = 'Category Controller';
 
+function createCategories(categories: any, parentId = null): Object {
+    const categoryList = [];
+    let category;
+    if (parentId == null) {
+        category = categories.filter((cat: any) => cat.parentId == undefined);
+    } else {
+        category = categories.filter((cat: any) => cat.parentId == parentId);
+    }
+
+    for (let cate of category) {
+        categoryList.push({
+            _id: cate._id,
+            categoryName: cate.categoryName,
+            categoryImage: cate.categoryImage,
+            slug: cate.slug,
+            parentId: cate.parentId,
+            children: createCategories(categories, cate._id)
+        });
+    }
+
+    return categoryList;
+}
 const NewCategory = async (req: Request, res: Response, next: NextFunction) => {
-    const { categoryName, categoryImage } = req.body;
+    const { categoryName, categoryImage, slug, parentId } = req.body;
     const categories = await new Category({
         _id: new mongoose.Types.ObjectId(),
         categoryName,
-        categoryImage
+        categoryImage,
+        parentId,
+        slug
     });
     return categories
         .save()
         .then((category) => res.status(201).json(category))
         .catch((error) => res.status(500).json({ error }));
 };
-const addSubCategory = async (req: Request, res: Response, next: NextFunction) => {
-    const { categoryId, sub_name } = req.body;
-    const subcategories = await new sub_category({
-        _id: new mongoose.Types.ObjectId(),
-        categoryId,
-        sub_name
-    });
-    return subcategories
-        .save()
-        .then((subcategory) => res.status(201).json(subcategory))
-        .catch((error) => res.status(500).json({ error }));
-};
 
 const listAllCategory = async (req: Request, res: Response, next: NextFunction) => {
-    // const { SubCategory } = req.body;
-    // {
-    //     attributes: ['id', 'name'],
-    //     include: [{ model: SubCategory }]
-    // }
-    return await Category.find()
-        .then((category) => res.status(200).json(category))
-        .catch((error) => res.status(500).json({ error }));
-};
-const listAllSubCategory = async (req: Request, res: Response, next: NextFunction) => {
-    const { category } = req.body;
-    return await sub_category
-        .find({
-            where: { categoryId: req.query.categoryId },
-            include: [{ model: category, attributes: ['id', 'name'] }]
-        })
-        .then((category) => res.status(200).json(category))
-        .catch((error) => res.status(500).json({ error }));
+    return await Category.find({}).exec((error, categories) => {
+        if (error) return res.status(400).json({ error });
+        if (categories) {
+            const categoryList = createCategories(categories);
+            res.status(200).json( categoryList );
+        }
+    });
+    // .then((category) => res.status(200).json(category))
+    // .catch((error) => res.status(500).json({ error }));
 };
 
 const updateCategory = async (req: Request, res: Response, next: NextFunction) => {
@@ -76,4 +78,4 @@ const deleteCategory = async (req: Request, res: Response, next: NextFunction) =
         .then((category) => (category ? res.status(201).json({ category, message: 'Deleted' }) : res.status(404).json({ message: 'not found' })))
         .catch((error) => res.status(500).json({ error }));
 };
-export default { NewCategory, deleteCategory, updateCategory, listAllCategory, addSubCategory, listAllSubCategory };
+export default { NewCategory, deleteCategory, updateCategory, listAllCategory};
