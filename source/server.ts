@@ -40,7 +40,7 @@ router.use((req, res, next) => {
     // res.header('Acces-Control-Allow-Origin', '*');
     // res.header('Acces-Control-Allow-Origin', 'Origin, X-Requested-with, Content-Type,Accept, Authorization');
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    res.header('Access-Control-Allow-Headers', '*');
     if (req.method == 'OPTIONS') {
         res.header('Acces-Control-Allow-Origin', 'GET PATCH DELETE POST PUT');
         return res.status(200).json({});
