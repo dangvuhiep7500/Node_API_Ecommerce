@@ -32,19 +32,16 @@ const resgisterUser = async (req: Request, res: Response, next: NextFunction) =>
                     });
                 }
                 const _user = new User({
-                    _id: new mongoose.Types.ObjectId(),
                     email,
                     password: hash,
-                    // email,
                     firstName,
                     lastName,
                     phoneNumber,
                     role
                 });
-
                 return _user
                     .save()
-                    .then((user) => res.status(201).json({ user }))
+                    .then((users) => res.status(201).json( users ))
                     .catch((error) => res.status(500).json({ message: error.message, error }));
             });
         })
@@ -79,7 +76,6 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
                                 });
                             } else if (token) {
                                 return res.status(200).json({
-                                    message: 'Logged in successfully',
                                     token,
                                     user: users[0]
                                 });

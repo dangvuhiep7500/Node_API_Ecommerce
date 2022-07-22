@@ -5,7 +5,11 @@ export default interface IOrder extends Document {
         productId: string;
         quantity: number;
     };
-    amount: number;
+    customer: string;
+    email: string;
+    phoneNumber: number;
+    note: string;
+    parentId: string;
     address: string;
     status: string;
 }

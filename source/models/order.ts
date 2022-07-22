@@ -9,8 +9,13 @@ const OrderSchema: Schema = new Schema(
                 quantity: { type: Number, default: 1 }
             }
         ],
-        amount: { type: Number, required: true },
+        // quantity: { type: Number, required: true },
+        customer: { type: String },
+        email: { type: String },
+        phoneNumber: { type: Number },
         address: { type: String, required: true },
+        note: { type: String },
+        parentId: { type: String },
         status: { type: String, default: 'pending' }
     },
     { timestamps: true }

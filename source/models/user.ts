@@ -3,7 +3,6 @@ import IUser from '../interfaces/user';
 
 const UserSchema: Schema = new Schema(
     {
-        // username: { type: String, required: true, unique: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         firstName: { type: String },
@@ -19,5 +18,13 @@ const UserSchema: Schema = new Schema(
         timestamps: true
     }
 );
-
+UserSchema.set('toJSON', {
+    // virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        // delete ret._id;
+        // delete ret.id;
+        delete ret.password;
+    }
+});
 export default mongoose.model<IUser>('User', UserSchema);
