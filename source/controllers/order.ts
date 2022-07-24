@@ -25,12 +25,14 @@ function createOrder(orders: any, parentId = null): Object {
     return orderList;
 }
 const NewOrder = async (req: Request, res: Response, next: NextFunction) => {
-    const { userId, customer, email, phoneNumber, note, address, parentId, products, status } = req.body;
+    const { userId, customer, email, phoneNumber, note, address, parentId, products, status, totalQuantity, totalSum } = req.body;
     const order = await new Order({
         userId,
         customer,
         email,
         phoneNumber,
+        totalQuantity,
+        totalSum,
         note,
         products,
         address,

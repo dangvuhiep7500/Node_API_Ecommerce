@@ -5,6 +5,5 @@ export default interface IProduct extends Document {
     image: string;
     imageDetail: [string];
     categoryId: string;
-    // inventoryId: number;
     price: number;
 }
