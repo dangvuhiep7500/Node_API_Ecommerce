@@ -9,15 +9,18 @@ const OrderSchema: Schema = new Schema(
                 quantity: { type: Number }
             }
         ],
-        totalQuantity: { type: Number },
-        totalSum: { type: Number },
         customer: { type: String, required: true },
         email: { type: String, required: true },
         phoneNumber: { type: Number, required: true },
         address: { type: String, required: true },
+        customerReceiver: { type: String },
+        phoneReceiver: { type: Number},
+        addressReceiver: { type: String},
+        totalQuantity: { type: Number },
+        totalSum: { type: Number },
         note: { type: String },
-        parentId: { type: String },
-        status: { type: String, default: 'pending' }
+        status: { type: String, default: 'pending' },
+        payment: { type: String }
     },
     { timestamps: true }
 );

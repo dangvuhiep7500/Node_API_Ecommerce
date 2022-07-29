@@ -7,13 +7,16 @@ export default interface IOrder extends Document {
             quantity: number;
         }
     ];
-    totalQuantity: number;
-    totalSum: number;
     customer: string;
     email: string;
     phoneNumber: number;
-    note: string;
-    parentId: string;
     address: string;
+    customerReceiver: string;
+    phoneReceiver: number;
+    addressReceiver: string;
+    totalQuantity: number;
+    totalSum: number;
+    note: string;
     status: string;
+    payment: string;
 }
