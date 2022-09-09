@@ -2,13 +2,14 @@
     "name": "api_node",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "source/server.ts",
     "engines": {
         "node": "14.x"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon --exec npx ts-node source/server.ts"
+        "start": "nodemon --exec npx ts-node source/server.ts",
+        "vercel-build": "nodemon --exec npx ts-node source/server.ts"
     },
     "keywords": [],
     "author": "",
