@@ -8,8 +8,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon --exec npx ts-node source/server.ts",
-        "vercel-build": "node source/server.ts"
+        "start": "nodemon --exec npx ts-node source/server.ts"
     },
     "keywords": [],
     "author": "",

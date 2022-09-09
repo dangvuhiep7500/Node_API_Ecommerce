@@ -1,4 +1,3 @@
-import http from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
 import logging from './config/logging';
@@ -64,5 +63,5 @@ router.use((req, res, next) => {
     return res.status(404).json({ message: error.message });
 });
 
-const httpServer = http.createServer(router);
-httpServer.listen(config.server.port, () => logging.info(NAMESPACE, `Server running on ${config.server.hostname}:${config.server.port}`));
+// const httpServer = http.createServer(router);
+router.listen(config.server.port, () => logging.info(NAMESPACE, `Server running on ${config.server.hostname}:${config.server.port}`));
