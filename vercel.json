@@ -1,6 +1,3 @@
 {
-    "version": 2,
-    "name": "ecommerce",
-    "builds": [{ "src": "server.ts", "use": "@vercel/node" }],
-    "routes": [{ "src": "/(.*)", "dest": "/server.ts" }]
+    "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
