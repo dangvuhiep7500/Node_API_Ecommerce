@@ -8,7 +8,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node --exec npx ts-node source/server.ts"
+        "start": "nodemon --exec npx ts-node source/server.ts"
     },
     "keywords": [],
     "author": "",
