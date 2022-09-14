@@ -1,26 +1,16 @@
 import dotenv from 'dotenv';
-import { mongo } from 'mongoose';
 
 dotenv.config();
 
-// const MONGO_OPTIONS = {
-//     useUnifiedTopology: true,
-//     useNewUrlParser: true,
-//     socketTimeoutMS: 30000,
-//     keepAlive: true,
-//     poolSize: 50,
-//     autoIndex: false,
-//     retryWrites: false
-// };
-
-const MONGO_HOST = process.env.MONGO_URL || `127.0.0.1:27017/rest-api`;
+// const MONGO_HOST = process.env.MONGO_URL || `127.0.0.1:27017/rest-api`;
 
 const MONGO = {
-    host: MONGO_HOST,
+    // host: MONGO_HOST,
     // password: MONGO_PASSWORD,
     // username: MONGO_USERNAME,
 
-    url: `mongodb://${MONGO_HOST}?readPreference=primary&directConnection=true&ssl=false`
+    // url: `mongodb://${MONGO_HOST}?readPreference=primary&directConnection=true&ssl=false`
+    url: `mongodb+srv://dangvuhiep1291:prehaploke1@cluster0.amiuoxz.mongodb.net/ecommerce?retryWrites=true&w=majority`
 };
 
 const SERVER_HOSTNAME = process.env.SERVER_PORT || 'localhost';
