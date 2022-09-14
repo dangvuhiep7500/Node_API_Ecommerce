@@ -1,6 +1,6 @@
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 
 // const MONGO_HOST = process.env.MONGO_URL || `127.0.0.1:27017/rest-api`;
 
